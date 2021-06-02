@@ -15,7 +15,7 @@ const express = require('express')
     host:'localhost',
     user: 'root',
     password: '',
-    database: ''
+    database: 'billingSystem'
   });
   
   mysqlConnection.connect((err)=>{
