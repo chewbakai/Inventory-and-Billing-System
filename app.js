@@ -107,8 +107,6 @@ const e = require('express')
     });
     // res.render('index.ejs', { name: req.user.name })
 
-   
-
     
     // console.log(total_sales)
     // console.log(ord_num)
@@ -120,11 +118,11 @@ const e = require('express')
     res.render('login.ejs')
   })
   
-  app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-  }))
+//   app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+//     successRedirect: '/',
+//     failureRedirect: '/login',
+//     failureFlash: true
+//   }))
   
   app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
