@@ -4,7 +4,7 @@
   "description": "a billing system that stores all the transactions and has the ability to produce auto-generated reports on collection, invoices, and client’s status and there’s no need to input the information to create reports.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,27 @@
   "bugs": {
     "url": "https://github.com/chewbakai/Tugonon-Construction-Services-and-Supply-Billing-System/issues"
   },
-  "homepage": "https://github.com/chewbakai/Tugonon-Construction-Services-and-Supply-Billing-System#readme"
+  "homepage": "https://github.com/chewbakai/Tugonon-Construction-Services-and-Supply-Billing-System#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "chart.js": "^3.0.1",
+    "easyinvoice": "^1.0.111",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.1",
+    "fs": "^0.0.1-security",
+    "method-override": "^3.0.0",
+    "mongodb": "^3.6.5",
+    "mysql": "^2.18.1",
+    "natives": "^1.1.6",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pdfkit": "^0.11.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
 }
