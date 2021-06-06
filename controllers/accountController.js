@@ -42,7 +42,7 @@ exports.login = async (req, res) => {
 			res.send("Incorrect password");
 		} else {
 			req.session.userId = user.id;
-			res.redirect("/tasks");
+			res.redirect("/");
 		}
 	}
 };

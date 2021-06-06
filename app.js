@@ -21,7 +21,7 @@ app.use(session({
     },
 }))
 
-app.get('/', (req,res) => res.redirect('/tasks'))
+app.get('/', (req,res) => res.redirect('/home'))
 app.use('/accounts', require('./routes/accounts'))
 app.use('/tasks', require('./routes/tasks'))
 

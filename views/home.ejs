@@ -1,106 +1,88 @@
-<%- include('./layout/header.ejs') %>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+</head>
 <body>
-    <!-- Main -->
-			<section id="main">
-				<div class="inner">
+    <div class="d-flex justify-content-end mt-">
+        <form action="/accounts/log-out" method="post">
+            <button type="submit" class="btn ">Log out</button>
+        </form>
+    </div>
+    <div class="container pt-4 pb-2 " style="max-width: 800px;" >
+        <h2 class="fw-bold">To Do </h2>
+        <small class="text-secondary mb-1">Do your tasks! </small>
+        <form action="/tasks/create" class="row " method="post">
+            <div class="col">
+                <input type="text" name="title" class="form-control" id="">
+            </div>            
+            <div class="col-auto text-center">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
 
-				<!-- One -->
-					<section id="one" class="wrapper style1">
-						<br>
-						<center>
-						<div class="box">
-							<img src="images/pic02.png" alt="" />
-						</div>
-						</center>
-						<header class="special">
-							<h2>A BRIEF INTRODUCTION OF THE COMPANY</h2>
-						</header>
-						<div class="content">
-							<p>Tugonon Construction Services and Supply is a new company that started in the year 2019. Technically it is new but old in a way that it was just renamed. The old name of the company is LJT Builders that started in the early 2000s. The person who runs this company is an engineer/contractor named Leo Javier Tugonon. There are 2 offices located at Lilo-an and Labogon Cebu. </p>
-							<p>This company specializes more on renovation and ceiling works but recent projects have been popping creating mini-malls like Insular Square located at Tabok Mandaue City. </p>
-						</div>
-					</section>
+        <table class="table table-sm mt-4 " >
+            <tbody>
+                <%tasks.forEach(task => {%>
+                    <tr>
+                        <td >
+                            <form action="/tasks/<%= task.id %>/mark" method="post">
+                                <div class="form-check" >
+                                    <input class="form-check-input" type="checkbox" name="mark" onchange="this.form.submit()"  id="flexCheckChecked" <%= task.is_completed ? 'checked' : ''%>>
+                                </div>
+                            </form>
+                        </td>
+                        <td id="task-title-<%=task.id%>"class=" text-center <%= task.is_completed ? 'text-decoration-line-through' : ''%>"><%= task.title %></td>
+                        <td class="text-center">
+                            <div class="d-flex flex-row justify-content-end">
+                                <button class="btn btn-sm edit-task" id="<%=task.id%>" data-bs-toggle="modal" data-bs-target="#editModal">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <form action="/tasks/<%= task.id %>/delete" method="post">
+                                    <button onclick="this.form.submit()" class="btn btn-sm">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
+                                
+                            </div>
+                        </td>
+                    </tr>
+                <%})%>
+            </tbody>
+          </table>
+    </div>
+</body>
+<div class="modal" tabindex="-1" id="editModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" id="edit-form" class="d-flex flex-column">
+                <input type="text" id="edit-task" class="form-control" name="title"></p>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary ">
+                        Edit
+                    </button>
+                </div>
+          </form>
+        </div>
 
-				<!-- Two -->
-					<section id="two" class="wrapper style2">
-						<header>
-							<h2>Construction Projects</h2>
-							<p>By Engineer Leo Javier Tugonon</p>
-						</header>
-						<div class="content">
-							<div class="gallery">
-								<div>
-									<div class="image fit flush">
-										<a href="images/pic03.jpg"><img src="images/pic03.jpg" alt="" /></a>
-									</div>
-								</div>
-								<div>
-									<div class="image fit flush">
-										<a href="images/pic01.jpg"><img src="images/pic01.jpg" alt="" /></a>
-									</div>
-								</div>
-								<div>
-									<div class="image fit flush">
-										<a href="images/pic04.jpg"><img src="images/pic04.jpg" alt="" /></a>
-									</div>
-								</div>
-								<div>
-									<div class="image fit flush">
-										<a href="images/pic05.jpg"><img src="images/pic05.jpg" alt="" /></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-
-				<!-- Three -->
-					<section id="three" class="wrapper">
-						<div class="spotlight">
-							<div class="image flush"><img src="images/daddyleo.jpg" alt="" /></div>
-							<div class="inner">
-								<h3>Engineer Leo Javier Tugonon</h3>
-								<p>Graduated from University of San Carlos - Talamban Campus and is the head engineer and the contractor of the company</p>
-							</div>
-						</div>
-						<div class="spotlight alt">
-							<div class="image flush"><img src="images/pic07.jpg" alt="" /></div>
-							<div  class="inner">
-								<h3>Agbay Residential Building</h3>
-								<p>A recent project of the company. The western look which is inspired by the prevailing Victorian aesthetic, which emphasized dark decor, and busy embellishments both inside and out. </p>
-							</div>
-						</div>
-						<div class="spotlight">
-							<div class="image flush"><img src="images/pic12.jpg" alt="" /></div>
-							<div class="inner">
-								<h3>Insular Square</h3>
-								<p>Located at 31 JP Rizal St. Tabok Mandaue City. This is one of the big projects of the company which basically made the company famous and in demand in Cebu.</p>
-							</div>
-						</div>
-					</section>
-
-				</div>
-			</section>
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-					<ul class="icons">
-						<li><a href="https://twitter.com/KikoTugz" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="https://www.facebook.com/tugononconstructionservicesandsupply/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="https://www.instagram.com/kikotugz/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-					</ul>
-				</div>
-				<div class="copyright">
-					&copy; Untitled. All rights reserved. Images by<a href="https://www.facebook.com/tugononconstructionservicesandsupply/"> Tugonon Construction Services and Supply</a> 
-				</div>
-			</footer>
-
-		<!-- Scripts -->
-			
-
+      </div>
+    </div>
+  </div>
 <script>
     document.querySelectorAll(".edit-task").forEach(btn => {
         btn.addEventListener("click",(event) => {
@@ -112,9 +94,4 @@
         })
     });
 </script>
-            <script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 </html>
