@@ -1,35 +1,28 @@
-require('dotenv').config();
+require('dotenv').config()
 
-var express = require('express');
-const logger = require('morgan');
-var cors = require('cors');
-app = express();
-(port = process.env.PORT || 3000),
-	(bodyParser = require('body-parser')),
-	(category_controller = require('./src/controllers/category'));
-product_controller = require('./src/controllers/product');
-user_controller = require('./src/controllers/user');
-var todoList = require('./src/controllers/product');
+const express = require('express')
+const session = require('express-session')
+const uuid = require('uuid')
+const app = express()
+const port = process.env.port || 3000
+app.set('view engine', 'ejs')
 
-app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(
-	cors({
-		origin: ''
-	})
-);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+app.use(session({
+    secret:'somevalue',
+    cookie:{
+        maxAge: 60000
+    },
+    saveUninitialized:false,
+    resave:false,
+    genid: function(req) {
+        return uuid.v4() 
+    },
+}))
 
-var products_routes = require('./src/routes/productRoute');
-var user_route = require('./src/routes/userRoute');
-var category_routes = require('./src/routes/categoryRoute');
+app.get('/', (req,res) => res.redirect('/tasks'))
+app.use('/accounts', require('./routes/accounts'))
+app.use('/tasks', require('./routes/tasks'))
 
-products_routes(app);
-category_routes(app);
-user_route(app);
-
-
-app.route('*').get(todoList.notFound);
-
-app.listen(port);
-console.log('server started on: ' + port);
+app.listen(port, () => console.log(`App listening in port ${port}`))

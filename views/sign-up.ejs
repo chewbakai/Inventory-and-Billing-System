@@ -16,8 +16,8 @@
 <body>
     <div class="w-25 container">
         <div class="d-flex flex-column justify-content-center vh-100">
-          <form action="/accounts/login" class="m-0 p-0" method="post">
-            <h1 class="text-center fw-bold">Login</h1>
+          <form action="/accounts/sign-up" class="m-0 p-0" method="post">
+            <h1 class="text-center fw-bold">Sign up</h1>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
                 <input type="text" class="form-control" name="username" required>
@@ -27,7 +27,8 @@
                 <input type="password" class="form-control" name="password" required minlength="8">
             </div>
             <div class="mb-4">
-                <a href="/accounts/sign-up" class="text-decoration-none">Register here<a>
+                <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" name="confirmPassword" required minlength="8">
             </div>
             <div class="mb-3 d-flex flex-column">
                 <input type="submit" value="Submit" class="btn btn-primary ml-auto"> 
