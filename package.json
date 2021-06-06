@@ -1,7 +1,7 @@
 {
   "name": "crud-todo-nodejs",
   "version": "1.0.0",
-  "description": "MVC approach To Do List",
+  "description": "",
   "main": "app.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -21,13 +21,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chewbakai/Tugonon-Construction-Services-and-Supply-Billing-System.git"
-  },
-  "bugs": {
-    "url": "https://github.com/chewbakai/Tugonon-Construction-Services-and-Supply-Billing-System/issues"
-  },
-  "homepage": "https://github.com/chewbakai/Tugonon-Construction-Services-and-Supply-Billing-System#readme"
+  "license": "ISC"
 }
