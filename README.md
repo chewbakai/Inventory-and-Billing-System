@@ -1,29 +1,15 @@
-# TO DO LIST
+# Basic Inventory and Point of Sale System.
+## This is built using MySQL, Express.js, Vue.js, Node.js (MEVN Stack) and tailwindcss for the styles
 
-MVC approach To Do List
+Steps for running on local computer
+1. `git clone https://github.com/lourencelinao/inventory_system_final.git`
+2. `cd inventory_system_final`
+3. `npm install`
+4. upload the database to phpmyadmin, file exist under server/database/database.sql
+5. open new terminal and `cd client`
+6. `npm install`
+7. `npm run serve`
+8. Then open `localhost:8080`
 
-## 
-
-
-**Install packages**
-
-Install packages used in this app by running 
-```
-npm install
-```
-**Database**  
-
-Create a database and run <code>npx sequelize db:migrate</code> to generate the tables
-## Running the program 
-
-```
-node app
-```
-
-## Major Technologies Used
-
-* [MySql](https://www.mysql.com/) - database
-* [Express](https://expressjs.com/) - web framework
-* [Node.js](https://nodejs.org/en/) - server
-
-
+Username: test@test.com <br>
+Password: 123123
