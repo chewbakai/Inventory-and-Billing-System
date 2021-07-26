@@ -1,7 +1,7 @@
 const {DataTypes} = require("sequelize");
 const db = require("../connection");
 
-const tasks = db.sequelize.define("tasks", {
+const clients = db.sequelize.define("clients", {
     id: {
         type: DataTypes.BIGINT,
         autoIncrement: true,
@@ -12,7 +12,7 @@ const tasks = db.sequelize.define("tasks", {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      task_name:{
+      client_name:{
         type: DataTypes.STRING,   
         allowNull: false,
       },
@@ -34,4 +34,4 @@ const tasks = db.sequelize.define("tasks", {
       }
 });
 
-exports.model = tasks;
+exports.model = clients;

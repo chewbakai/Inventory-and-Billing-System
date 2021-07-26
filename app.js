@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));      
 
 const   accountRoutes = require('./routes/accountRoutes'),
-        taskRoutes = require('./routes/taskRoutes');
+        clientRoutes = require('./routes/clientRoutes');
 
 app.set('view engine','ejs')
 app.use(express.static(__dirname + '/public'));
@@ -29,7 +29,7 @@ app.get("/logout", (req,res) => {
 
 //routes
 app.use("/account", accountRoutes);
-app.use("/task", taskRoutes);
+app.use("/client", clientRoutes);
 
 app.listen(8080);
 

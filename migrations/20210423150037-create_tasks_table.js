@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tasks',{
+    await queryInterface.createTable('clients',{
       id: {
         type: Sequelize.BIGINT,
         autoIncrement: true,
@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      task_name:{
+      client_name:{
         type: Sequelize.STRING,   
         allowNull: false,
       },
@@ -37,6 +37,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tasks');
+    await queryInterface.dropTable('clients');
   }
 };

@@ -1,14 +1,14 @@
-const task = require("../models/task");
+const client = require("../models/client");
 
-exports.getTask = (req, res) =>{ 
+exports.getClient = (req, res) =>{ 
     if(req.session.code){
-        task.model.findAll({
+        client.model.findAll({
             where:{ account_uuid: req.session.code
             }
-        }).then(tasks =>{
-            req.session.tasks = tasks;
-            if(tasks){
-                res.render("home",{username: req.session.userName,code: req.session.code, tasks:req.session.tasks,loggedIn:req.session.loggedIn});
+        }).then(clients =>{
+            req.session.clients = clients;
+            if(clients){
+                res.render("home",{username: req.session.userName,code: req.session.code, clients:req.session.clients,loggedIn:req.session.loggedIn});
             }
         })
     }else{
@@ -16,37 +16,37 @@ exports.getTask = (req, res) =>{
     }
 }
 
-exports.makeTask = (req, res) =>{
+exports.makeClient = (req, res) =>{
     if(req.session.code){
-        res.render("createTask",{username: req.session.userName,code: req.session.code, tasks:req.session.tasks,loggedIn:req.session.loggedIn});
+        res.render("createClient",{username: req.session.userName,code: req.session.code, clients:req.session.clients,loggedIn:req.session.loggedIn});
     }else{
         res.redirect("/");
     }
 }
 
-exports.createTask = async (req, res) => {
+exports.createClient = async (req, res) => {
 
     if(req.session.code){
-        let result = await task.model.create({
+        let result = await client.model.create({
             account_code: req.session.code, 
-            task_name: req.query.task,
+            client_name: req.query.client,
             description: req.query.desc,
             status: "pending"
         })
         if(!result){
-            res.render("/createTask",{username: req.session.userName,code: req.session.code, tasks:req.session.tasks,loggedIn:req.session.loggedIn});
+            res.render("/createClient",{username: req.session.userName,code: req.session.code, clients:req.session.clients,loggedIn:req.session.loggedIn});
         }else{
-            res.redirect("/task");
+            res.redirect("/client");
         }
     }else{
         res.redirect("/");
     }
 }
 
-exports.updateTask = async (req, res) => {   
+exports.updateClient = async (req, res) => {   
 
     if(req.session.code){
-        let result = await task.model.update({status:"completed"} ,
+        let result = await client.model.update({status:"completed"} ,
         {
             where:{
                 id: req.query.id
@@ -55,24 +55,24 @@ exports.updateTask = async (req, res) => {
         if(!result){
 
         }else{
-            res.redirect("/task");
+            res.redirect("/client");
         }
     }else{
         res.redirect("/");
     }
 }
 
-exports.deleteTask = async (req, res) => {
+exports.deleteClient = async (req, res) => {
     if(req.session.code){
-        await task.model.destroy({
+        await client.model.destroy({
             where: {
                 id: req.query.id
             }
         }).then(result => {
             if(result){
-                res.redirect("/task");
+                res.redirect("/client");
             }else{
-                res.redirect("/task");
+                res.redirect("/client");
             }
         })
     }else{
