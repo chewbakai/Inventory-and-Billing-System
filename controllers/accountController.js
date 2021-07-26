@@ -13,10 +13,10 @@ var generateCode = () => {
 }
 
 exports.registerAccount = (req,res) => {
-    res.render("create");
+    res.render("register");
 }
 
-exports.createAccount = async (req, res) => {
+exports.registerAccount = async (req, res) => {
     //console.log("Create an account");
     //console.log(req.body);
     var salt = bcrypt.genSaltSync(saltRounds);
@@ -24,7 +24,7 @@ exports.createAccount = async (req, res) => {
     var hash = bcrypt.hashSync(req.body.password,salt);
     console.log("hatdog", salt)
     console.log("hatdog", hash)
-   await account.model.create({
+   await account.model.register({
                 code: generateCode(),
                 username: req.body.userName,
                 password: hash
@@ -34,7 +34,7 @@ exports.createAccount = async (req, res) => {
         }
     }).catch(err => {
         console.log(err)
-        res.render("create",{err:"Error"})
+        res.render("register",{err:"Error"})
 
     })
 }

@@ -1,7 +1,7 @@
  <%- include('./templates/header.ejs') %> 
 <body>
   <section>
-      <form action="/account/create_account" method="POST">
+      <form action="/account/register_account" method="POST">
       <div class="container">
         <div class="row justify-content-center">
 
@@ -13,6 +13,11 @@
                 <% if( typeof(err) != 'undefined') { %>
                  <h5 style="color:red"> <%= err %> </h5>
                 <% }%>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <input type="text" name="FullName" class="form-control" placeholder="Full name" required>
               </div>
             </div>
             <div class="row align-items-center">
