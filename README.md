@@ -1,6 +1,6 @@
 # Inventory Management System
 
-Login Credentials
+Login Credentials for admin
 Id : admin
 password : admin
 
